@@ -30,52 +30,91 @@
 8. Об'єднайте створений список з одним із його непустих підсписків. Для цього
 використайте функцію APPEND.
 
-;; Пункт 1
+```lisp
+;; Пункт 1 Створення списку з п'яти елементів
 (defvar mylist nil)
 (setq mylist (list 'A (cons 1 '()) (cons 'B (list 2)) () 'C))
-(print mylist)
+(format t "Пункт 1: ~a~%" mylist)
+(format t "---~%")
 
-;; Пункт 2
-(print (car mylist))
+;; Пункт 2 Отримання голови списку
+(format t "Пункт 2: ~a~%" (car mylist))
+(format t "---~%")
 
-;; Пункт 3
-(print (cdr mylist))
+;; Пункт 3 Отримання хвоста списку
+(format t "Пункт 3: ~a~%" (cdr mylist))
+(format t "---~%")
 
-;; Пункт 4
-(print (third mylist))
+;; Пункт 4 Отримання третього елемента
+(format t "Пункт 4: ~a~%" (third mylist))
+(format t "---~%")
 
-;; Пункт 5
-(print (car (last mylist)))
+;; Пункт 5 Отримання останнього елемента
+(format t "Пункт 5: ~a~%" (car (last mylist)))
+(format t "---~%")
 
-;; Пункт 6
-;; ATOM
-(print (atom (car mylist)))          ;; 'A
-(print (atom (car (third mylist))))  ;; 'B
-(print (atom (cdr (third mylist))))  ;; (2)
+;; Пункт 6 Використання предикатів ATOM і LISTP
+(format t "Пункт 6:~%")
+(format t "  ATOM 'A: ~a~%" (atom (car mylist)))
+(format t "  ATOM 'B: ~a~%" (atom (car (third mylist))))
+(format t "  ATOM (2): ~a~%" (atom (cdr (third mylist))))
+(format t "  LISTP (1): ~a~%" (listp (second mylist)))
+(format t "  LISTP (B 2): ~a~%" (listp (third mylist)))
+(format t "  LISTP 'A: ~a~%" (listp (car mylist)))
+(format t "---~%")
 
-;; LISTP
-(print (listp (second mylist)))      ;; (1)
-(print (listp (third mylist)))       ;; (B 2)
-(print (listp (car mylist)))         ;; 'A
+;; Пункт 7 Використання інших предикатів
+(format t "Пункт 7:~%")
+(format t "  NUMBERP 1: ~a~%" (numberp (car (second mylist))))
+(format t "  NUMBERP 'B: ~a~%" (numberp (car (third mylist))))
+(format t "  EQUAL 'A 'A: ~a~%" (equal (car mylist) 'A))
+(format t "  EQUAL 'A 'B: ~a~%" (equal (car mylist) (car (third mylist))))
+(format t "---~%")
 
-;; Пункт 7
-;; NUMBERP
-(print (numberp (car (second mylist))))  ;; 1
-(print (numberp (car (third mylist))))   ;; B
+;; Пункт 8 Об'єднання списку з його підсписком
+(format t "Пункт 8: ~a~%" (append mylist (third mylist)))
+(format t "---~%")
+```
+### Результат виконання:
 
-;; EQUAL
-(print (equal (car (second mylist)) 1))   ;; (1) з 1
-(print (equal (car mylist) 'A))          ;; A з 'A
-(print (equal (car mylist) (car (third mylist))))  ;; A з B
-
-;; Пункт 8
-(print (append mylist (third mylist)))
-
+```lisp
+Пункт 1: (A (1) (B 2) NIL C)
+---
+Пункт 2: A
+---
+Пункт 3: ((1) (B 2) NIL C)
+---
+Пункт 4: (B 2)
+---
+Пункт 5: C
+---
+Пункт 6:
+  ATOM 'A: T
+  ATOM 'B: T
+  ATOM (2): NIL
+  LISTP (1): T
+  LISTP (B 2): T
+  LISTP 'A: NIL
+---
+Пункт 7:
+  NUMBERP 1: T
+  NUMBERP 'B: NIL
+  EQUAL 'A 'A: T
+  EQUAL 'A 'B: NIL
+---
+Пункт 8: (A (1) (B 2) NIL C B 2)
+---
+```
 
 ## Завдання за варіантом 6
+```lisp
 (defvar mylist nil)
 (let ((x (list 'D 'E))  
       (y (list 6 5 4)))     
   (setq mylist (list 4 x y)))
 (print mylist)
-
+```
+### Результат виконання:
+```lisp
+(4 (D E) (6 5 4))
+```
