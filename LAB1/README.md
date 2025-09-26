@@ -107,6 +107,11 @@
 ```
 
 ## Завдання за варіантом 6
+
+<p align="center">
+<img src="lab-1-variant6.png">
+</p>
+
 ```lisp
 (defvar mylist nil)
 (let ((x (list 'D 'E))  
