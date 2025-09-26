@@ -31,3 +31,51 @@
 використайте функцію APPEND.
 
 ;; Пункт 1
+(defvar mylist nil)
+(setq mylist (list 'A (cons 1 '()) (cons 'B (list 2)) () 'C))
+(print mylist)
+
+;; Пункт 2
+(print (car mylist))
+
+;; Пункт 3
+(print (cdr mylist))
+
+;; Пункт 4
+(print (third mylist))
+
+;; Пункт 5
+(print (car (last mylist)))
+
+;; Пункт 6
+;; ATOM
+(print (atom (car mylist)))          ;; 'A
+(print (atom (car (third mylist))))  ;; 'B
+(print (atom (cdr (third mylist))))  ;; (2)
+
+;; LISTP
+(print (listp (second mylist)))      ;; (1)
+(print (listp (third mylist)))       ;; (B 2)
+(print (listp (car mylist)))         ;; 'A
+
+;; Пункт 7
+;; NUMBERP
+(print (numberp (car (second mylist))))  ;; 1
+(print (numberp (car (third mylist))))   ;; B
+
+;; EQUAL
+(print (equal (car (second mylist)) 1))   ;; (1) з 1
+(print (equal (car mylist) 'A))          ;; A з 'A
+(print (equal (car mylist) (car (third mylist))))  ;; A з B
+
+;; Пункт 8
+(print (append mylist (third mylist)))
+
+
+## Завдання за варіантом 6
+(defvar mylist nil)
+(let ((x (list 'D 'E))  
+      (y (list 6 5 4)))     
+  (setq mylist (list 4 x y)))
+(print mylist)
+
