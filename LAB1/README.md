@@ -113,13 +113,11 @@
 </p>
 
 ```lisp
-(defvar mylist nil)
-(let ((x (list 'D 'E))  
-      (y (list 6 5 4)))     
-  (setq mylist (list 4 x y)))
-(print mylist)
+(let ((x (list 6 5 4)))     
+  (let ((mylist (list (last x) 'D 'E x)))
+    (print mylist)))
 ```
 ### Результат виконання:
 ```text
-(4 (D E) (6 5 4))
+((4) D E (6 5 4))
 ```
