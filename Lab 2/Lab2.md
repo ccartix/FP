@@ -94,7 +94,7 @@
 ```
 
 ### Тестування
-```lisp
+```
 Тести для merge-lists-spinning-pairs:
 passed... Тест 1
 passed... Тест 2
