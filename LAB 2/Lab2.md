@@ -42,18 +42,18 @@
    
 ## Лістинг функції merge-lists-spinning-pairs
 ```lisp
-(defun merge-lists-spinning-pairs (lst1 list2)
+(defun merge-lists-spinning-pairs (lst1 lst2)
   (cond ((null lst1)
-         (if (null list2)
+         (if (null lst2)
              nil
-             (cons (list (car list2))
-                   (merge-lists-spinning-pairs nil (cdr list2)))))
-        ((null list2)
+             (cons (list (car lst2))
+                   (merge-lists-spinning-pairs nil (cdr lst2)))))
+        ((null lst2)
          (cons (list (car lst1))
                (merge-lists-spinning-pairs (cdr lst1) nil)))
         (t
-         (cons (list (car lst1) (car list2))
-               (merge-lists-spinning-pairs (cdr list2) (cdr lst1))))))
+         (cons (list (car lst1) (car lst2))
+               (merge-lists-spinning-pairs (cdr lst2) (cdr lst1))))))
 ```
 
 ## Лістинг функції list-set-intersect-p
