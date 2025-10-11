@@ -43,13 +43,17 @@
 ## Лістинг функції merge-lists-spinning-pairs
 ```lisp
 (defun merge-lists-spinning-pairs (lst1 list2)
-  (cond
-    ((null lst1) 
-     (if (null list2) nil (cons (list (car list2)) (merge-lists-spinning-pairs nil (cdr list2)))))
-    ((null list2) 
-     (cons (list (car lst1)) (merge-lists-spinning-pairs (cdr lst1) nil)))
-    (t 
-     (cons (list (car lst1) (car list2)) (merge-lists-spinning-pairs (cdr list2) (cdr lst1))))))
+  (cond ((null lst1)
+         (if (null list2)
+             nil
+             (cons (list (car list2))
+                   (merge-lists-spinning-pairs nil (cdr list2)))))
+        ((null list2)
+         (cons (list (car lst1))
+               (merge-lists-spinning-pairs (cdr lst1) nil)))
+        (t
+         (cons (list (car lst1) (car list2))
+               (merge-lists-spinning-pairs (cdr list2) (cdr lst1))))))
 ```
 
 ## Лістинг функції list-set-intersect-p
@@ -64,6 +68,7 @@
 ```
 ## Тестові набори та утиліти
 ```lisp
+
 (defun check-result (name func input1 input2 expected)
   (format t "~:[FAILED~;passed~]... ~a~%"
           (equal (funcall func input1 input2) expected)
