@@ -27,6 +27,19 @@
 мають бути оформленні у вигляді модульних тестів
 
 ## Варіант 6
+
+1. Написати функцію `merge-lists-spinning-pairs`, яка групує відповідні елементи двох списків, почергово змінюючи їх взаємне розташування в групі:
+   ```lisp
+   CL-USER> (merge-lists-spinning-pairs '(1 2 3 4 5) '(a b c d))
+   ((1 A) (B 2) (3 C) (D 4) (5))
+   
+2. Написати предикат list-set-intersect-p, який визначає чи перетинаються дві множини, задані списками атомів, чи ні:
+   ```lisp
+   CL-USER> (list-set-intersect-p '(1 2 3) '(4 5 6))
+   NIL
+   CL-USER> (list-set-intersect-p '(1 2 3) '(3 4 5))
+   T
+   
 ## Лістинг функції merge-lists-spinning-pairs
 ```lisp
 (defun merge-lists-spinning-pairs (lst1 list2)
