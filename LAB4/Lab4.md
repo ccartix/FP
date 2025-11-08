@@ -91,19 +91,19 @@ passed... test 7
 та ```initial-value``` ).
 ```lisp
 CL-USER> (reduce (rpropagation-reducer)
-'(3 2 1 2 3)
-:from-end ...
-:initial-value ...)
+         '(3 2 1 2 3)
+         :from-end ...
+         :initial-value ...)
 (1 1 1 2 3)
 CL-USER> (reduce (rpropagation-reducer)
-'(3 1 4 2)
-:from-end ...
-:initial-value ...)
+         '(3 1 4 2)
+         :from-end ...
+         :initial-value ...)
 (1 1 2 2)
 CL-USER> (reduce (rpropagation-reducer :comparator #'>)
-'(1 2 3)
-:from-end ...
-:initial-value ...)
+         '(1 2 3)
+         :from-end ...
+         :initial-value ...)
 (3 3 3)
 ```
 
