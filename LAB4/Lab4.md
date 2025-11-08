@@ -141,4 +141,5 @@ CL-USER> (reduce (rpropagation-reducer :comparator #'>)
 ===  Tests rpropagation-reducer ===
 passed... test 1
 passed... test 2
+passed... test 3
 ```
