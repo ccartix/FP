@@ -120,9 +120,7 @@
       (funcall mod :RELEASEYEAR 2024 :PARAMETERS 314000000000)) 
 
     (format t "~%+ Модель GPT-4:~%")
-    (pretty-print-records (funcall mod :NAME "GPT-4"))
-
-    ))
+    (pretty-print-records (funcall mod :NAME "GPT-4"))))
 
 
 ; Тест 3: Запис відфільтрованих даних у новий файл
