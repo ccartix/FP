@@ -1,0 +1,20 @@
+(defun fi (i)
+  (cond ((= i 1) 1.0)
+        ((= i 6) 1.0)
+        ((<= 2 i 5) (* (sqrt (fi (- i 1))) (/ (log i) 7.0)))
+        ((<= 7 i 15) (* (sqrt (fi (- i 1))) (/ (sqrt i) 4.0)))
+        (t (error "i має бути від 1 до 15"))))
+
+(defun print-row-rec (current max-val)
+  (when (<= current max-val)
+    (format t "| ~2d | ~20,15f |~%" current (fi current))
+    (print-row-rec (+ current 1) max-val)))
+
+(defun print-table ()
+  (format t "|----|----------------------|~%")
+  (format t "| i  |         Fi           |~%")
+  (format t "|----|----------------------|~%")
+  (print-row-rec 1 15)
+  (format t "|----|----------------------|~%"))
+
+(print-table)
