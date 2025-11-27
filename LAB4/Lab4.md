@@ -44,6 +44,11 @@
       (let ((min-pair (find-min-pair pair-lst test)))
         (cons min-pair
               (sort-pairs-recursive (remove-one min-pair pair-lst) test)))))
+
+(defun sort-func (lst &key (key #'identity) (test #'<))
+  (let* ((decorated-lst (mapcar (lambda (x) (cons (funcall key x) x)) lst))
+         (sorted-pairs (sort-pairs-recursive decorated-lst test)))
+    (mapcar #'cdr sorted-pairs)))
 ```
 
 ### Тестові набори та утиліти першої частини
