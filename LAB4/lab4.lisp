@@ -1,11 +1,9 @@
-(defun find-min (lst key test)
-  (if (null (cdr lst))
-      (car lst)
-      (let* ((head (car lst))
-             (head-key (funcall key head))
-             (tail-min (find-min (cdr lst) key test))
-             (tail-key (funcall key tail-min)))
-        (if (funcall test head-key tail-key)
+(defun find-min-pair (pair-lst test)
+  (if (null (cdr pair-lst))
+      (car pair-lst)
+      (let* ((head (car pair-lst))
+             (tail-min (find-min-pair (cdr pair-lst) test)))
+        (if (funcall test (car head) (car tail-min))
             head
             tail-min))))
 
@@ -14,14 +12,12 @@
         ((equal element (car lst)) (cdr lst))
         (t (cons (car lst) (remove-one element (cdr lst))))))
 
-(defun sort-func (lst &key (key #'identity) (test #'<))
-  (if (or (null lst) (null (cdr lst)))
-      lst
-      (let ((min (find-min lst key test)))
-        (cons min
-              (sort-func (remove-one min lst)
-                         :key key
-                         :test test)))))
+(defun sort-pairs-recursive (pair-lst test)
+  (if (or (null pair-lst) (null (cdr pair-lst)))
+      pair-lst
+      (let ((min-pair (find-min-pair pair-lst test)))
+        (cons min-pair
+              (sort-pairs-recursive (remove-one min-pair pair-lst) test)))))
   
 (defun check-sort-func (name input expected &key (key #'identity) (test #'<))
   (format t "~:[FAILED~;passed~]... ~a~%" 
