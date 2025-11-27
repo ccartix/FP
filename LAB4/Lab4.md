@@ -24,31 +24,31 @@
    
 ## Лістинг реалізації першої частини завдання
 ```lisp
-(defun find-min (lst key test)
-  (if (null (cdr lst))
-      (car lst)
-      (let* ((head (car lst))
-             (head-key (funcall key head))
-             (tail-min (find-min (cdr lst) key test))
-             (tail-key (funcall key tail-min)))
-        (if (funcall test head-key tail-key)
-            head
-            tail-min))))
+(defun find-min-pair (pairs test)
+  (if (null (cdr pairs))
+      (car pairs)
+      (let* ((head-pair (car pairs))
+             (tail-min-pair (find-min-pair (cdr pairs) test)))
+        (if (funcall test (car head-pair) (car tail-min-pair))
+            head-pair
+            tail-min-pair))))
 
-(defun remove-one (element lst)
+(defun remove-one (item lst)
   (cond ((null lst) nil)
-        ((equal element (car lst)) (cdr lst))
-        (t (cons (car lst) (remove-one element (cdr lst))))))
+        ((equal item (car lst)) (cdr lst)) 
+        (t (cons (car lst) (remove-one item (cdr lst))))))
+
+(defun sort-pairs (pairs test)
+  (if (or (null pairs) (null (cdr pairs)))
+      pairs
+      (let ((min-pair (find-min-pair pairs test)))
+        (cons min-pair
+              (sort-pairs (remove-one min-pair pairs) test)))))
 
 (defun sort-func (lst &key (key #'identity) (test #'<))
-  (if (or (null lst) (null (cdr lst)))
-      lst
-      (let ((min (find-min lst key test)))
-        (cons min
-              (sort-func (remove-one min lst)
-                         :key key
-                         :test test)))))
-  
+  (let* ((pairs (mapcar (lambda (x) (cons (funcall key x) x)) lst))
+         (sorted-pairs (sort-pairs pairs test)))
+    (mapcar #'cdr sorted-pairs)))  
 ```
 
 ### Тестові набори та утиліти першої частини
